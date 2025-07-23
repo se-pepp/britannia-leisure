@@ -2,48 +2,359 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Britannia Leisure Roblox</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Britannia Leisure Roblox - All-in-One</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(120deg, #00eaff, #ffc8ff);
+      color: #111;
+      overflow-x: hidden;
+      padding: 1rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 2rem;
+      z-index: 2;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 2px 2px 5px #0007;
+      margin-bottom: 1rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      background: #111;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover, nav a.active {
+      background: #ff66d4;
+      color: white;
+    }
+    section {
+      width: 100%;
+      max-width: 900px;
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Hero style */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: white;
+      text-shadow: 2px 2px 5px #0008;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .play-btn {
+      background: #ff66d4;
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: 0.2s ease-in-out;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+    .play-btn:hover {
+      transform: scale(1.05);
+      background: #ff33b5;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      color: #111;
+      margin-bottom: 3rem;
+    }
+    .feature {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Membership Cards */
+    .membership-cards {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-bottom: 4rem;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-align: left;
+      font-weight: 600;
+      color: #444;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #222;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    .card ul li {
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    .bronze {
+      border: 3px solid #cd7f32;
+      box-shadow: 0 0 20px #cd7f32aa;
+    }
+    .silver {
+      border: 3px solid #c0c0c0;
+      box-shadow: 0 0 20px #c0c0c0aa;
+    }
+    .gold {
+      border: 3px solid #ffd700;
+      box-shadow: 0 0 25px #ffd700cc;
+    }
+    .platinum {
+      border: 3px solid #e5e4e2;
+      box-shadow: 0 0 25px #b9f2ffcc;
+    }
+
+    /* Timetable */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 3rem;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-weight: 600;
+    }
+    th {
+      background: #00bcd4;
+      color: white;
+    }
+    tr:hover {
+      background: #f0fcff;
+    }
+
+    footer {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.4);
+      padding: 1rem;
+      border-radius: 12px;
+      color: #222;
+      box-shadow: 0 0 10px #0002;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">🌊 Britannia Leisure Roblox</div>
+    <h1>🌟 Britannia Leisure Roblox</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Timetable</a>
-      <a href="#">Membership</a>
-      <a href="#">Join</a>
-      <a href="#">Contact</a>
+      <a href="#" class="nav-link active" data-section="home">Home</a>
+      <a href="#" class="nav-link" data-section="membership">Memberships</a>
+      <a href="#" class="nav-link" data-section="timetable">Timetable</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Dive Into the Fun</h1>
-      <p>The most exciting Roblox pool & gym experience inspired by Hackney’s real Britannia Leisure Centre 🏊‍♂️</p>
-      <a class="btn" href="https://www.roblox.com/games/YOUR-GAME-ID-HERE" target="_blank">🌐 Play on Roblox</a>
+  <!-- HOME SECTION -->
+  <section id="home" class="active">
+    <div class="hero">
+      <h2>🌊 Splash into Something Epic</h2>
+      <p>Roblox’s most vibrant and realistic leisure centre experience — pools, gyms, and vibes 🎧</p>
+      <a class="play-btn" href="https://www.roblox.com/games/YOUR-GAME-ID-HERE" target="_blank" rel="noopener noreferrer">🎮 Play on Roblox</a>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3>💧 Pools for Days</h3>
+        <p>Flumes, waves, diving, and hangouts.</p>
+      </div>
+      <div class="feature">
+        <h3>🏋️ Hype Gym Zones</h3>
+        <p>Legit gym tech that WORKS in-game!</p>
+      </div>
+      <div class="feature">
+        <h3>☕ Chill Areas</h3>
+        <p>Café, rooftop, lockers, and more.</p>
+      </div>
     </div>
   </section>
 
-  <section class="features">
-    <div class="feature-card">
-      <h2>💦 Massive Pools</h2>
-      <p>Wave pool, flume slide, splash zone, and training lanes for every skill level.</p>
+  <!-- MEMBERSHIP SECTION -->
+  <section id="membership">
+    <h2>💳 Membership Tiers</h2>
+    <p style="text-align:center; max-width:600px; margin:1rem auto 3rem auto;">Choose Your Level & Unlock Perks — pools, gym, food & fun! 🍔🏊‍♂️</p>
+
+    <div class="membership-cards">
+      <div class="card bronze">
+        <h3>🥉 Bronze</h3>
+        <ul>
+          <li>🔸 10% off all café food & drinks</li>
+          <li>🔸 Access to the community pool</li>
+          <li>🔸 Free swimming lessons</li>
+        </ul>
+      </div>
+      <div class="card silver">
+        <h3>🥈 Silver</h3>
+        <ul>
+          <li>✅ All Bronze perks</li>
+          <li>🔸 Full gym access</li>
+          <li>🔸 15% café discount</li>
+          <li>🔸 Free towel rental</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <h3>🥇 Gold</h3>
+        <ul>
+          <li>✅ All Silver perks</li>
+          <li>🔸 Access to rooftop courts</li>
+          <li>🔸 25% café discount</li>
+          <li>🔸 Priority invites to special events</li>
+          <li>🔸 Exclusive Gold badge</li>
+        </ul>
+      </div>
+      <div class="card platinum">
+        <h3>💎 Platinum</h3>
+        <ul>
+          <li>✅ All Gold perks</li>
+          <li>🔸 VIP lounge access</li>
+          <li>🔸 Personal trainer sessions</li>
+          <li>🔸 Backstage passes to events</li>
+        </ul>
+      </div>
     </div>
-    <div class="feature-card">
-      <h2>🏋️‍♀️ Realistic Gym</h2>
-      <p>Work out with working treadmills, free weights, and dance studios.</p>
-    </div>
-    <div class="feature-card">
-      <h2>🎉 Hangout Spots</h2>
-      <p>Chill with friends in the café, rooftop courts, and locker rooms.</p>
-    </div>
+  </section>
+
+  <!-- TIMETABLE SECTION -->
+  <section id="timetable">
+    <h2>📅 Weekly Timetable</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>9am - 10am</td>
+          <td>Swimming Lessons</td>
+          <td>Gym Training</td>
+          <td>Swimming Lessons</td>
+          <td>Yoga</td>
+          <td>Free Swim</td>
+        </tr>
+        <tr>
+          <td>10am - 11am</td>
+          <td>Open Swim</td>
+          <td>Dance Class</td>
+          <td>Open Swim</td>
+          <td>Gym Training</td>
+          <td>Open Swim</td>
+        </tr>
+        <tr>
+          <td>11am - 12pm</td>
+          <td>Water Aerobics</td>
+          <td>Open Swim</td>
+          <td>Water Aerobics</td>
+          <td>Open Swim</td>
+          <td>Yoga</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
   </section>
 
   <footer>
-    <p>© 2025 Britannia Leisure Roblox. Made for the community. Not affiliated with GLL.</p>
+    <p>🚨 Not real. Made by Robloxians for Robloxians 💕</p>
   </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+
+        // Remove active classes
+        navLinks.forEach(nav => nav.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        // Add active class to clicked nav and corresponding section
+        link.classList.add('active');
+        const sectionToShow = document.getElementById(link.dataset.section);
+        if(sectionToShow) sectionToShow.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
