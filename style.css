@@ -1,48 +1,86 @@
 body {
-    background-color: #001100;
-    color: #00ff00;
-    font-family: 'Courier New', Courier, monospace;
-    overflow: hidden;
     margin: 0;
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif;
+    /* Surreal Digital Circus / 90s Vibe */
+    background: repeating-linear-gradient(
+        0deg,
+        #000033,
+        #000033 19px,
+        #ff00ff 20px
+    );
+    background-size: 100% 20px;
+}
+
+.hidden { display: none !important; }
+
+/* LOGIN SCREEN */
+#login-screen {
+    position: absolute;
+    width: 100vw; height: 100vh;
+    background-color: #004e98;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    z-index: 1000;
 }
-
-#terminal {
-    width: 90%;
-    height: 80%;
-    border: 2px solid #004400;
-    padding: 20px;
-    background: rgba(0, 20, 0, 0.9);
-    box-shadow: 0 0 20px #00ff0033;
+.login-box {
+    background: #ece9d8;
+    border: 2px solid #0055ea;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    border-radius: 5px;
 }
-
-#output {
-    white-space: pre-wrap;
-    line-height: 1.5;
-    margin-bottom: 10px;
+.login-box input {
+    display: block; width: 90%; margin: 10px auto; padding: 5px;
 }
+.login-box button {
+    padding: 5px 20px; font-weight: bold; cursor: pointer;
+}
+#login-error { color: red; font-weight: bold; font-size: 12px; }
 
+/* DESKTOP ICONS */
+#desktop { width: 100vw; height: 100vh; position: relative; }
+.icon {
+    width: 80px; text-align: center; color: white;
+    margin: 20px; font-size: 30px; cursor: pointer;
+    text-shadow: 1px 1px 2px black;
+}
+.icon span { font-size: 12px; background: rgba(0,0,0,0.5); padding: 2px; }
+.icon:hover { background: rgba(255,255,255,0.2); }
+
+/* WINDOWS XP STYLE */
+.xp-window {
+    position: absolute; top: 15%; left: 20%;
+    width: 600px; height: 400px;
+    background: #ece9d8;
+    border: 3px solid #0055ea;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column;
+}
+.title-bar {
+    background: linear-gradient(to right, #0058e6, #3a93ff);
+    color: white; padding: 5px 10px; font-weight: bold;
+    display: flex; justify-content: space-between;
+}
+.close-btn {
+    background: #ff4444; color: white; border: 1px solid white;
+    border-radius: 3px; font-weight: bold; cursor: pointer;
+}
+.window-content { flex-grow: 1; padding: 10px; overflow-y: auto; }
+
+/* FILE MANAGER GRID */
+.file-grid { background: white; border: 2px inset gray; display: flex; gap: 20px; padding: 20px;}
+.file-icon { text-align: center; font-size: 40px; cursor: pointer; width: 80px;}
+.file-icon span { font-size: 12px; display: block; }
+.file-icon:hover { background: rgba(0, 0, 255, 0.1); }
+
+/* TERMINAL STYLING */
+.terminal-bg { background: black; color: #00ff00; font-family: monospace; }
 #input-line { display: flex; }
-
-#user-input {
-    background: transparent;
-    border: none;
-    color: #00ff00;
-    outline: none;
-    font-family: inherit;
-    font-size: inherit;
-    width: 100%;
-}
-
-/* The CRT "Scanline" effect */
-.crt-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 3px 100%;
-    pointer-events: none;
+#term-input {
+    background: transparent; border: none; color: #00ff00;
+    outline: none; font-family: inherit; font-size: inherit; width: 100%;
 }
