@@ -1,4 +1,6 @@
-// --- Elements ---
+// ==========================================
+// 1. SYSTEM ELEMENTS & BOOT SEQUENCE
+// ==========================================
 const bootScreen = document.getElementById('boot-screen');
 const bootText = document.getElementById('boot-text');
 const loginScreen = document.getElementById('login-screen');
@@ -6,7 +8,6 @@ const desktop = document.getElementById('desktop');
 const loginBtn = document.getElementById('login-btn');
 const errorMsg = document.getElementById('login-error');
 
-// --- 1. Linux Kernel Boot Sequence ---
 const bootLogs = [
     "Loading GRUB 2.02...",
     "Booting TEX_KERNEL_v4.19...",
@@ -31,7 +32,9 @@ async function runBootSequence() {
 
 window.onload = runBootSequence;
 
-// --- 2. Login, Full Screen & Clock ---
+// ==========================================
+// 2. LOGIN & FULL SCREEN LOGIC
+// ==========================================
 loginBtn.addEventListener('click', () => {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
@@ -54,14 +57,15 @@ function startClock() {
         let hours = now.getHours();
         let minutes = now.getMinutes();
         const ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; 
+        hours = hours % 12 || 12; 
         minutes = minutes < 10 ? '0' + minutes : minutes;
         document.getElementById('clock').innerText = hours + ':' + minutes + ' ' + ampm;
     }, 1000);
 }
 
-// --- 3. Window Management & Start Menu ---
+// ==========================================
+// 3. WINDOW MANAGEMENT & DRAGGING
+// ==========================================
 let highestZ = 10;
 
 function toggleStartMenu() {
@@ -90,7 +94,7 @@ function openNotepad(title, content) {
     document.getElementById('notepad-text').value = content;
 }
 
-// Dragging Logic
+// Make windows draggable
 document.querySelectorAll('.xp-window').forEach(win => {
     win.addEventListener('mousedown', () => {
         highestZ += 1;
@@ -115,7 +119,37 @@ document.querySelectorAll('.xp-window').forEach(win => {
     document.addEventListener('mouseup', () => { isDragging = false; });
 });
 
-// --- 4. Hacker Web Browser ---
+// ==========================================
+// 4. TAS MAIL EXPRESS
+// ==========================================
+const emails = {
+    1: {
+        subject: "URGENT: Re: Boiler Room",
+        sender: "From: Regional Director &lt;director@tas-hotels.com&gt;",
+        body: "Mark,<br><br>Do not touch that wall. Do not chip away any more bricks. Pack it with cement immediately.<br><br>There is no sub-basement. There is no elevator. If you speak to the guests or the other staff about 'green lights' or 'TEX', your employment at TAS Horizon Hotel will be terminated immediately."
+    },
+    2: {
+        subject: "Found something behind East Wall",
+        sender: "From: Mark (Maintenance) &lt;maintenance@tas-hotels.com&gt;",
+        body: "Boss, I checked the boiler room because of the complaints. It's not the boiler.<br><br>Behind the east wall, there's a hollow space. I chipped a loose brick away and saw an old, heavy metal elevator door. It had the word 'TEX' stamped on it in faded paint. Also, the metal is warm to the touch, and there's a faint green light coming from underneath the door frame. Should I get the crowbar and open it?"
+    },
+    3: {
+        subject: "Guest Complaints - Vibrations",
+        sender: "From: Front Desk &lt;desk@tas-hotels.com&gt;",
+        body: "Hey Maintenance,<br><br>We have had three different complaints from guests on the ground floor tonight. Room 114 says there is a low hum keeping them awake, and Room 112 swears the floorboards are vibrating rhythmically, almost like a heartbeat.<br><br>Can you check the boiler room? Maybe a pipe is rattling?"
+    }
+};
+
+// This must be a global function so the HTML onclick="" can find it
+window.readMail = function(id) {
+    document.getElementById('mail-subject').innerHTML = emails[id].subject;
+    document.getElementById('mail-sender').innerHTML = emails[id].sender;
+    document.getElementById('mail-body').innerHTML = emails[id].body;
+};
+
+// ==========================================
+// 5. HACKER BROWSER (TEXNet)
+// ==========================================
 const searchInput = document.getElementById('hacker-search-input');
 const targetQuery = "TAS Hotel underground facility TEX acquisition";
 let currentTypeIndex = 0;
@@ -148,7 +182,9 @@ function backToSearch() {
     document.getElementById('browser-search').classList.remove('hidden');
 }
 
-// --- 5. TEX_SAT Terminal Logic ---
+// ==========================================
+// 6. TEX_SAT TERMINAL
+// ==========================================
 const termOutput = document.getElementById('output');
 const termInputLine = document.getElementById('input-line');
 const termInput = document.getElementById('term-input');
@@ -195,28 +231,4 @@ termInput.addEventListener('keydown', async (e) => {
         termInputLine.classList.remove('hidden');
         termInput.focus();
     }
-    // --- TAS Mail Express Logic ---
-const emails = {
-    1: {
-        subject: "URGENT: Re: Boiler Room",
-        sender: "From: Regional Director <director@tas-hotels.com>",
-        body: "Mark,<br><br>Do not touch that wall. Do not chip away any more bricks. Pack it with cement immediately.<br><br>There is no sub-basement. There is no elevator. If you speak to the guests or the other staff about 'green lights' or 'TEX', your employment at TAS Horizon Hotel will be terminated immediately."
-    },
-    2: {
-        subject: "Found something behind East Wall",
-        sender: "From: Mark (Maintenance) <maintenance@tas-hotels.com>",
-        body: "Boss, I checked the boiler room because of the complaints. It's not the boiler.<br><br>Behind the east wall, there's a hollow space. I chipped a loose brick away and saw an old, heavy metal elevator door. It had the word 'TEX' stamped on it in faded paint. Also, the metal is warm to the touch, and there's a faint green light coming from underneath the door frame. Should I get the crowbar and open it?"
-    },
-    3: {
-        subject: "Guest Complaints - Vibrations",
-        sender: "From: Front Desk <desk@tas-hotels.com>",
-        body: "Hey Maintenance,<br><br>We have had three different complaints from guests on the ground floor tonight. Room 114 says there is a low hum keeping them awake, and Room 112 swears the floorboards are vibrating rhythmically, almost like a heartbeat.<br><br>Can you check the boiler room? Maybe a pipe is rattling?"
-    }
-};
-
-function readMail(id) {
-    document.getElementById('mail-subject').innerHTML = emails[id].subject;
-    document.getElementById('mail-sender').innerHTML = emails[id].sender;
-    document.getElementById('mail-body').innerHTML = emails[id].body;
-}
 });
