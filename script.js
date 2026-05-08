@@ -12,18 +12,16 @@ const bootLogs = [
     "Booting TEX_KERNEL_v4.19...",
     "[ <span class='boot-ok'>OK</span> ] Started System Logging Service.",
     "[ <span class='boot-ok'>OK</span> ] Mounted /dev/sda1 to /boot.",
-    "[ <span class='boot-ok'>OK</span> ] Reached target Local File Systems.",
+    "[ <span class='boot-ok'>OK</span> ] Connected to TAS Hotel Network.",
     "[ <span class='boot-fail'>FAILED</span> ] Failed to start Containment Daemon Sector 4.",
-    "Retrying Containment Daemon... [ <span class='boot-fail'>DENIED</span> ]",
-    "[ <span class='boot-ok'>OK</span> ] Started Network Manager.",
-    "Starting TEX Graphic Interface...",
+    "Retrying Containment Daemon... [ <span class='boot-fail'>DENIED: ENTITY BREACH</span> ]",
+    "[ <span class='boot-ok'>OK</span> ] Started Windows XP Emulator.",
     "Welcome to TEX OS."
 ];
 
 async function runBootSequence() {
     for (let i = 0; i < bootLogs.length; i++) {
         bootText.innerHTML += bootLogs[i] + "<br>";
-        // Random fast delay like a real computer booting
         await new Promise(r => setTimeout(r, Math.random() * 300 + 100));
     }
     await new Promise(r => setTimeout(r, 1000));
@@ -31,10 +29,9 @@ async function runBootSequence() {
     loginScreen.classList.remove('hidden');
 }
 
-// Start boot sequence immediately when page loads
 window.onload = runBootSequence;
 
-// --- 2. Login & Full Screen Logic ---
+// --- 2. Login, Full Screen & Clock ---
 loginBtn.addEventListener('click', () => {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
@@ -45,13 +42,36 @@ loginBtn.addEventListener('click', () => {
         }
         loginScreen.classList.add('hidden');
         desktop.classList.remove('hidden');
+        startClock();
     } else {
         errorMsg.classList.remove('hidden');
     }
 });
 
-// --- 3. Window Management & Dragging ---
+function startClock() {
+    setInterval(() => {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('clock').innerText = hours + ':' + minutes + ' ' + ampm;
+    }, 1000);
+}
+
+// --- 3. Window Management & Start Menu ---
 let highestZ = 10;
+
+function toggleStartMenu() {
+    const menu = document.getElementById('start-menu');
+    menu.classList.toggle('hidden');
+    if (!menu.classList.contains('hidden')) {
+        highestZ += 1;
+        menu.style.zIndex = highestZ;
+    }
+}
 
 function openWindow(id) {
     const win = document.getElementById(id);
@@ -64,6 +84,13 @@ function closeWindow(id) {
     document.getElementById(id).classList.add('hidden');
 }
 
+function openNotepad(title, content) {
+    openWindow('window-notepad');
+    document.getElementById('notepad-title').innerText = title + " - Notepad";
+    document.getElementById('notepad-text').value = content;
+}
+
+// Dragging Logic
 document.querySelectorAll('.xp-window').forEach(win => {
     win.addEventListener('mousedown', () => {
         highestZ += 1;
@@ -88,22 +115,18 @@ document.querySelectorAll('.xp-window').forEach(win => {
     document.addEventListener('mouseup', () => { isDragging = false; });
 });
 
-// --- 4. Hacker Web Browser (The Typer) ---
+// --- 4. Hacker Web Browser ---
 const searchInput = document.getElementById('hacker-search-input');
-const targetQuery = "TEX Company History classified incident";
+const targetQuery = "TAS Hotel underground facility TEX acquisition";
 let currentTypeIndex = 0;
 
 searchInput.addEventListener('keydown', (e) => {
-    // Ignore Backspace, Enter, etc.
     if (e.key === "Enter") {
         document.getElementById('search-results').classList.remove('hidden');
         return;
     }
-    if (e.key.length !== 1) return; // Only trigger on letters/numbers
-    
-    e.preventDefault(); // Stop them from typing their own letter
-    
-    // Type the next letter of our secret phrase instead
+    if (e.key.length !== 1) return;
+    e.preventDefault();
     if (currentTypeIndex < targetQuery.length) {
         searchInput.value += targetQuery[currentTypeIndex];
         currentTypeIndex++;
@@ -118,16 +141,14 @@ document.getElementById('lore-link').addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('browser-search').classList.add('hidden');
     document.getElementById('browser-lore').classList.remove('hidden');
-    document.getElementById('browser-url').innerText = "intranet://docs/history-classified";
 });
 
 function backToSearch() {
     document.getElementById('browser-lore').classList.add('hidden');
     document.getElementById('browser-search').classList.remove('hidden');
-    document.getElementById('browser-url').innerText = "intranet://search";
 }
 
-// --- 5. TEX_SAT Terminal Logic (From before) ---
+// --- 5. TEX_SAT Terminal Logic ---
 const termOutput = document.getElementById('output');
 const termInputLine = document.getElementById('input-line');
 const termInput = document.getElementById('term-input');
@@ -151,9 +172,8 @@ async function runTexSatBoot() {
     termInputLine.classList.add('hidden');
     await slowPrint("BOOTING TEX_SAT v4.0.2...", 10);
     await slowPrint("[ OK ] KERNEL LOADED", 10);
-    await slowPrint("[ OK ] UPLINK TO ROBLOX_SERVER_01 ESTABLISHED", 10);
     await slowPrint("------------------------------------------", 5);
-    await slowPrint("1) /UNLOCK_FACILITY");
+    await slowPrint("1) /UNLOCK_TAS_ELEVATOR");
     
     termInputLine.classList.remove('hidden');
     termInput.focus();
@@ -166,8 +186,8 @@ termInput.addEventListener('keydown', async (e) => {
         termInputLine.classList.add('hidden');
         await slowPrint(`> ${cmd}`, 0);
         
-        if (cmd === "1" || cmd === "/UNLOCK_FACILITY") {
-            await slowPrint("SENDING SIGNAL... DOORS OPENED.");
+        if (cmd === "1" || cmd === "/UNLOCK_TAS_ELEVATOR") {
+            await slowPrint("SENDING SIGNAL TO TAS_HOTEL_ROUTER... DOORS OPENED.");
         } else {
             await slowPrint("UNKNOWN COMMAND.");
         }
