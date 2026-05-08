@@ -7,8 +7,13 @@
 </head>
 <body>
 
+    <!-- 0. LINUX KERNEL BOOT SCREEN -->
+    <div id="boot-screen">
+        <div id="boot-text"></div>
+    </div>
+
     <!-- 1. LOGIN SCREEN -->
-    <div id="login-screen">
+    <div id="login-screen" class="hidden">
         <div class="login-box">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Warning_icon.svg" alt="Warning" width="50">
             <h2>TEX OS - RESTRICTED</h2>
@@ -22,35 +27,99 @@
 
     <!-- 2. DESKTOP -->
     <div id="desktop" class="hidden">
-        <!-- Desktop Icons -->
-        <div class="icon" id="icon-files">
+        <div class="icon" ondblclick="openWindow('window-files')">
             📁<br><span>File Manager</span>
         </div>
-        <div class="icon" id="icon-trash">
-            🗑️<br><span>Recycle Bin</span>
+        <div class="icon" ondblclick="openWindow('window-notepad')">
+            📝<br><span>Notepad</span>
+        </div>
+        <div class="icon" ondblclick="openWindow('window-browser')">
+            🌐<br><span>TEXNet</span>
+        </div>
+        <div class="icon" ondblclick="openWindow('window-settings')">
+            ⚙️<br><span>Settings</span>
         </div>
 
-        <!-- 3. FILE MANAGER WINDOW -->
-        <div class="xp-window hidden" id="window-files">
+        <!-- 3. FILE MANAGER -->
+        <div class="xp-window hidden" id="window-files" style="top: 10%; left: 10%;">
             <div class="title-bar">
                 <span>C:\TEX_ROOT\SYSTEM32</span>
                 <button class="close-btn" onclick="closeWindow('window-files')">X</button>
             </div>
             <div class="window-content file-grid">
-                <div class="file-icon" id="file-tex-sat">
-                    ⚙️<br><span>TEX_SAT.exe</span>
-                </div>
-                <div class="file-icon">
-                    📄<br><span>logs.txt</span>
-                </div>
-                <div class="file-icon">
-                    📄<br><span>Subject_01.dat</span>
+                <div class="file-icon" ondblclick="openTerminal()">
+                    🖥️<br><span>TEX_SAT.exe</span>
                 </div>
             </div>
         </div>
 
-        <!-- 4. TEX_SAT TERMINAL WINDOW -->
-        <div class="xp-window hidden" id="window-terminal">
+        <!-- 4. SYSTEM SETTINGS (Fake UI) -->
+        <div class="xp-window hidden" id="window-settings" style="top: 15%; left: 15%; width: 350px; height: 250px;">
+            <div class="title-bar">
+                <span>System Properties</span>
+                <button class="close-btn" onclick="closeWindow('window-settings')">X</button>
+            </div>
+            <div class="window-content" style="background: #ece9d8; padding: 20px;">
+                <h3>System:</h3>
+                <p>TEX Quantum OS v4.0.2<br>Registered to: <span style="color:red;">[REDACTED]</span></p>
+                <h3>Status:</h3>
+                <p>Network: <span style="color:green;">CONNECTED</span><br>
+                Containment Field: <span style="color:orange;">FLUCTUATING</span></p>
+                <button disabled>Format Drive (LOCKED)</button>
+            </div>
+        </div>
+
+        <!-- 5. NOTEPAD -->
+        <div class="xp-window hidden" id="window-notepad" style="top: 20%; left: 40%; width: 400px; height: 300px;">
+            <div class="title-bar">
+                <span>Subject_01_Notes.txt - Notepad</span>
+                <button class="close-btn" onclick="closeWindow('window-notepad')">X</button>
+            </div>
+            <textarea class="notepad-content" spellcheck="false">
+Date: 10/24
+They locked the elevator. I don't know why. 
+The cameras keep shorting out in Sector 4.
+If anyone finds this, the manual override requires the TEX_SAT program.
+
+DO NOT let it out.
+            </textarea>
+        </div>
+
+        <!-- 6. TEXNet BROWSER (Hacker Search & Lore) -->
+        <div class="xp-window hidden" id="window-browser" style="top: 5%; left: 45%; width: 700px; height: 550px;">
+            <div class="title-bar">
+                <span>TEXNet Explorer</span>
+                <button class="close-btn" onclick="closeWindow('window-browser')">X</button>
+            </div>
+            <div class="browser-ui">
+                <div class="address-bar">Address: <span id="browser-url">intranet://search</span></div>
+                
+                <!-- Search View -->
+                <div id="browser-search" class="browser-content" style="background: white; color: black; padding: 50px; text-align: center;">
+                    <h1 style="color: #0055ea;">TEX Search</h1>
+                    <p>Enter Query:</p>
+                    <input type="text" id="hacker-search-input" style="width: 80%; padding: 10px; font-size: 16px;" autocomplete="off" placeholder="Type anything...">
+                    <br><br>
+                    <button id="search-btn" style="padding: 10px 20px;">Search</button>
+                    <div id="search-results" class="hidden" style="margin-top: 30px; text-align: left;">
+                        <a href="#" id="lore-link" style="color: blue; text-decoration: underline; font-size: 18px;">INTERNAL: TEX Research Group - Company History</a>
+                        <p style="color: gray;">Classified document regarding the founding of TEX and Sector 4 anomalies.</p>
+                    </div>
+                </div>
+
+                <!-- Lore View -->
+                <div id="browser-lore" class="browser-content hidden" style="background: white; color: black; padding: 30px; overflow-y: auto;">
+                    <h2>TEX Research Group: Genesis</h2>
+                    <p>Founded in 1982, TEX Research Group was originally contracted to study <span class="redacted">quantum subterranean anomalies</span> discovered beneath the state park.</p>
+                    <p>Under the leadership of <span class="redacted">Dr. ███████</span>, we achieved a massive breakthrough in energy generation. However, during the "Incident" of 1994, Subject 01 breached containment.</p>
+                    <p><strong>CURRENT DIRECTIVE:</strong> Keep the Sector 4 Elevator <span class="redacted">LOCKED AT ALL TIMES</span>. If the entity reaches the surface, <span class="redacted">initiate Protocol Omega</span>.</p>
+                    <button onclick="backToSearch()" style="margin-top: 20px;">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. TEX_SAT TERMINAL -->
+        <div class="xp-window hidden" id="window-terminal" style="top: 30%; left: 25%;">
             <div class="title-bar">
                 <span>TEX Secure Access Terminal (SAT)</span>
                 <button class="close-btn" onclick="closeWindow('window-terminal')">X</button>
