@@ -195,4 +195,28 @@ termInput.addEventListener('keydown', async (e) => {
         termInputLine.classList.remove('hidden');
         termInput.focus();
     }
+    // --- TAS Mail Express Logic ---
+const emails = {
+    1: {
+        subject: "URGENT: Re: Boiler Room",
+        sender: "From: Regional Director <director@tas-hotels.com>",
+        body: "Mark,<br><br>Do not touch that wall. Do not chip away any more bricks. Pack it with cement immediately.<br><br>There is no sub-basement. There is no elevator. If you speak to the guests or the other staff about 'green lights' or 'TEX', your employment at TAS Horizon Hotel will be terminated immediately."
+    },
+    2: {
+        subject: "Found something behind East Wall",
+        sender: "From: Mark (Maintenance) <maintenance@tas-hotels.com>",
+        body: "Boss, I checked the boiler room because of the complaints. It's not the boiler.<br><br>Behind the east wall, there's a hollow space. I chipped a loose brick away and saw an old, heavy metal elevator door. It had the word 'TEX' stamped on it in faded paint. Also, the metal is warm to the touch, and there's a faint green light coming from underneath the door frame. Should I get the crowbar and open it?"
+    },
+    3: {
+        subject: "Guest Complaints - Vibrations",
+        sender: "From: Front Desk <desk@tas-hotels.com>",
+        body: "Hey Maintenance,<br><br>We have had three different complaints from guests on the ground floor tonight. Room 114 says there is a low hum keeping them awake, and Room 112 swears the floorboards are vibrating rhythmically, almost like a heartbeat.<br><br>Can you check the boiler room? Maybe a pipe is rattling?"
+    }
+};
+
+function readMail(id) {
+    document.getElementById('mail-subject').innerHTML = emails[id].subject;
+    document.getElementById('mail-sender').innerHTML = emails[id].sender;
+    document.getElementById('mail-body').innerHTML = emails[id].body;
+}
 });
