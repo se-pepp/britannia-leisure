@@ -1,18 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TEX_MAINFRAME_V4</title>
+    <meta charset="UTF-8">
+    <title>TEX OS - UPLINK</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="crt-overlay"></div>
-    <div id="terminal">
-        <div id="output"></div>
-        <div id="input-line">
-            <span id="prompt">TEX_ID></span>
-            <input type="text" id="user-input" autofocus>
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="login-screen">
+        <div class="login-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Warning_icon.svg" alt="Warning" width="50">
+            <h2>TEX OS - RESTRICTED</h2>
+            <p>Only 1 active session allowed.</p>
+            <input type="text" id="username" placeholder="TEX_ID">
+            <input type="password" id="password" placeholder="Password">
+            <button id="login-btn">Log On</button>
+            <p id="login-error" class="hidden">INVALID CREDENTIALS</p>
         </div>
     </div>
+
+    <!-- 2. DESKTOP -->
+    <div id="desktop" class="hidden">
+        <!-- Desktop Icons -->
+        <div class="icon" id="icon-files">
+            📁<br><span>File Manager</span>
+        </div>
+        <div class="icon" id="icon-trash">
+            🗑️<br><span>Recycle Bin</span>
+        </div>
+
+        <!-- 3. FILE MANAGER WINDOW -->
+        <div class="xp-window hidden" id="window-files">
+            <div class="title-bar">
+                <span>C:\TEX_ROOT\SYSTEM32</span>
+                <button class="close-btn" onclick="closeWindow('window-files')">X</button>
+            </div>
+            <div class="window-content file-grid">
+                <div class="file-icon" id="file-tex-sat">
+                    ⚙️<br><span>TEX_SAT.exe</span>
+                </div>
+                <div class="file-icon">
+                    📄<br><span>logs.txt</span>
+                </div>
+                <div class="file-icon">
+                    📄<br><span>Subject_01.dat</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. TEX_SAT TERMINAL WINDOW -->
+        <div class="xp-window hidden" id="window-terminal">
+            <div class="title-bar">
+                <span>TEX Secure Access Terminal (SAT)</span>
+                <button class="close-btn" onclick="closeWindow('window-terminal')">X</button>
+            </div>
+            <div class="window-content terminal-bg" id="terminal-content">
+                <div id="output"></div>
+                <div id="input-line" class="hidden">
+                    <span id="prompt">TEX_CMD></span>
+                    <input type="text" id="term-input" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
