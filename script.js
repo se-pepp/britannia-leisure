@@ -94,7 +94,6 @@ function openNotepad(title, content) {
     document.getElementById('notepad-text').value = content;
 }
 
-// Make windows draggable
 document.querySelectorAll('.xp-window').forEach(win => {
     win.addEventListener('mousedown', () => {
         highestZ += 1;
@@ -124,23 +123,22 @@ document.querySelectorAll('.xp-window').forEach(win => {
 // ==========================================
 const emails = {
     1: {
-        subject: "URGENT: Re: Boiler Room",
+        subject: "The Old Pizzeria Props",
         sender: "From: Regional Director &lt;director@tas-hotels.com&gt;",
-        body: "Mark,<br><br>Do not touch that wall. Do not chip away any more bricks. Pack it with cement immediately.<br><br>There is no sub-basement. There is no elevator. If you speak to the guests or the other staff about 'green lights' or 'TEX', your employment at TAS Horizon Hotel will be terminated immediately."
+        body: "Mark,<br><br>I don't care what you found in the caves under the Multiplex. If you found old animatronic parts from Papa Bear's Palace, leave them there. The government investors paid us a lot of money to keep that area sealed off. Do NOT go past the changing door again."
     },
     2: {
-        subject: "Found something behind East Wall",
+        subject: "Found a weird mask device",
         sender: "From: Mark (Maintenance) &lt;maintenance@tas-hotels.com&gt;",
-        body: "Boss, I checked the boiler room because of the complaints. It's not the boiler.<br><br>Behind the east wall, there's a hollow space. I chipped a loose brick away and saw an old, heavy metal elevator door. It had the word 'TEX' stamped on it in faded paint. Also, the metal is warm to the touch, and there's a faint green light coming from underneath the door frame. Should I get the crowbar and open it?"
+        body: "Boss, I'm scared. I found a heavy plastic mask on the floor near the old testing rooms. I put it on as a joke, but it did something to my head. Something poked the back of my eye. <br><br>Now there is a cartoon thing in my vision calling itself 'H.E.L.P.R'. It keeps telling me to stay away from the M.X.E.S server. What is going on?"
     },
     3: {
-        subject: "Guest Complaints - Vibrations",
-        sender: "From: Front Desk &lt;desk@tas-hotels.com&gt;",
-        body: "Hey Maintenance,<br><br>We have had three different complaints from guests on the ground floor tonight. Room 114 says there is a low hum keeping them awake, and Room 112 swears the floorboards are vibrating rhythmically, almost like a heartbeat.<br><br>Can you check the boiler room? Maybe a pipe is rattling?"
+        subject: "AUTOMATED ALERT: COLD HARBOR",
+        sender: "From: SYSTEM &lt;M.X.E.S@tex.local&gt;",
+        body: "WARNING: ASOIK Containment Level Fluctuating.<br><br>If primary M.X.E.S server is shut down by unauthorized Occipital Transponder, the facility will collapse. Elevator routing will default to deep-storage sector: COLD HARBOR.<br><br>May God have mercy on whoever is in that elevator."
     }
 };
 
-// This must be a global function so the HTML onclick="" can find it
 window.readMail = function(id) {
     document.getElementById('mail-subject').innerHTML = emails[id].subject;
     document.getElementById('mail-sender').innerHTML = emails[id].sender;
@@ -151,7 +149,7 @@ window.readMail = function(id) {
 // 5. HACKER BROWSER (TEXNet)
 // ==========================================
 const searchInput = document.getElementById('hacker-search-input');
-const targetQuery = "TAS Hotel underground facility TEX acquisition";
+const targetQuery = "Papa Bears Palace 1987 M.X.E.S incident";
 let currentTypeIndex = 0;
 
 searchInput.addEventListener('keydown', (e) => {
