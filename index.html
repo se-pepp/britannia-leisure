@@ -68,34 +68,34 @@
         </div>
 
         <!-- 4. MY COMPUTER -->
-        <div class="xp-window hidden" id="window-computer" style="top: 5%; left: 5%; width: 650px; height: 450px;">
+        <div class="xp-window hidden" id="window-computer" style="top: 5%; left: 5%; width: 680px; height: 480px;">
             <div class="title-bar">
                 <span>My Computer</span>
                 <button class="close-btn" onclick="closeWindow('window-computer')">X</button>
             </div>
             <div class="window-content file-grid">
-                <div class="file-icon" ondblclick="openNotepad('1984_Memo.txt', 'CONFIDENTIAL: Genesis Project.\n\nThe new research facility is complete. The residential cover-house above it looks completely normal. Neighbors suspect nothing. We begin large-scale subterranean extraction operations tomorrow.')">
-                    📝<br><span>1984_Memo.txt</span>
+                <div class="file-icon" ondblclick="openNotepad('Project_VESSEL.txt', 'CONFIDENTIAL: Project VESSEL (1987)\n\nThe animatronics at Papa Bear\'s Palace are functioning perfectly. The M.I.N.S level anomaly energy we are pumping into their endoskeletons is stabilizing. However, maintenance reports a strange black liquid leaking from the joints of the Bear unit. We are ignoring this for now.')">
+                    🤖<br><span>Project_VESSEL.txt</span>
                 </div>
-                <div class="file-icon" ondblclick="openNotepad('Dr_Journal_Entry_42.txt', 'DATE: Oct 1987\n\nThe energy we are extracting... it isn\'t just power. It reacts to observation. When we look at it through the cameras, it stays completely still. But when the lights go out, it moves. It\'s learning our routines. It is building something down there.')">
-                    📝<br><span>Dr_Journal.txt</span>
-                </div>
-                <div class="file-icon" ondblclick="openNotepad('INCIDENT_1987.log', 'SECURITY ALERT: Dr. [REDACTED] went down to Level 4 alone. At 0300 hours, camera feeds severed. We sent a retrieval team... they didn\'t come back either. We are locking the blast doors. May God help us.')">
+                <div class="file-icon" ondblclick="openNotepad('INCIDENT_1987.log', 'CRITICAL ERROR: MULTIPLE BREACHES (1987)\n\nSURFACE LEVEL: The Bear unit has bitten a customer. Frontal lobe severed. The liquid has corrupted the programming.\n\nSUB-LEVEL: Dr. [REDACTED] is missing. Team Bravo is dead. I am manually initiating the M.X.E.S Security OS to lock the bunker down. God help us.')">
                     📝<br><span>INCIDENT_1987.log</span>
                 </div>
-                <div class="file-icon" ondblclick="openNotepad('Retrieval_Team_Bravo.log', 'AUDIO TRANSCRIPT - TEAM BRAVO\n[03:14:22] BRAVO-1: Command, we are at Level 4. The blast door is open. Temperature has dropped 20 degrees.\n[03:14:40] BRAVO-2: I found the Doctor\'s hazmat suit... it\'s empty. No blood.\n[03:15:02] BRAVO-1: Command, the shadows down here. They are moving independently of our flashlights.\n[03:15:10] BRAVO-2: It\'s looking at me. OH GOD FIRE! FIRE!\n[03:15:15] [GUNFIRE, SCREAMING]\n[03:15:18] [STATIC]')">
-                    📼<br><span>Audio_Log.txt</span>
+                <div class="file-icon" ondblclick="openNotepad('Phone_Guy_Transcript.txt', 'AUDIO TRANSCRIPT: Night Shift Training Tape\n\nUh, hello? Hello, hello? Uh, welcome to your new career at the TAS Horizon Multiplex. I\'m just leaving this message to help you get settled.\n\nLook, the night shift is easy, just watch the cameras. But whatever you do... if you see a door where the numbers keep changing? Don\'t go in. And if you find a plastic mask down there... just leave it alone. Trust me.')">
+                    📼<br><span>Phone_Guy_Transcript.txt</span>
                 </div>
-                <div class="file-icon" ondblclick="openNotepad('TAS_Acquisition.pdf', 'Memo from TAS Board of Directors (1990):\n\nWe have successfully purchased the defunct TEX Limited. We do not care about their failed energy research. The land is what matters. We will pave over the residential house and build The TAS Horizon Hotel. The old elevator in the basement is to be bricked over. Guests must NEVER know what is underneath.')">
-                    📄<br><span>TAS_Buyout.pdf</span>
+                <div class="file-icon" ondblclick="openNotepad('Occipital_Transponder.pdf', 'MANUAL: Occipital Transponder Mask\n\nTo all underground personnel: You MUST wear the mask. It interfaces with your optic nerve to reveal the M.X.E.S digital security network. If the H.E.L.P.R AI greets you, do not panic. It is just your guide. \n\nWarning: Disconnecting M.X.E.S will open the elevator to COLD HARBOR.')">
+                    📄<br><span>Mask_Manual.pdf</span>
                 </div>
                 <div class="file-icon" ondblclick="openTerminal()">
-                    ⚙️<br><span>TEX_SAT.exe</span>
+                    🖥️<br><span>TEX_SAT.exe</span>
+                </div>
+                <div class="file-icon" ondblclick="alert('ERROR: Access Keycard Required to open physical application [CELLS]')">
+                    🧬<br><span>CELLS.exe</span>
                 </div>
             </div>
         </div>
 
-        <!-- 5. TAS MAIL EXPRESS (New App!) -->
+        <!-- 5. TAS MAIL EXPRESS -->
         <div class="xp-window hidden" id="window-mail" style="top: 15%; left: 20%; width: 700px; height: 500px;">
             <div class="title-bar">
                 <span>TAS Mail Express</span>
@@ -109,13 +109,13 @@
                 </div>
                 <div class="mail-list">
                     <div class="mail-item" onclick="readMail(1)">
-                        <strong>Regional Director</strong><br>URGENT: Re: Boiler Room
+                        <strong>Regional Director</strong><br>The Old Pizzeria Props
                     </div>
                     <div class="mail-item" onclick="readMail(2)">
-                        <strong>Mark (Maintenance)</strong><br>Found something behind East Wall
+                        <strong>Mark (Maintenance)</strong><br>Found a weird mask device
                     </div>
                     <div class="mail-item" onclick="readMail(3)">
-                        <strong>Front Desk</strong><br>Guest Complaints - Vibrations
+                        <strong>SYSTEM M.X.E.S</strong><br>AUTOMATED ALERT: COLD HARBOR
                     </div>
                 </div>
                 <div class="mail-view">
@@ -152,16 +152,16 @@
                     <button id="search-btn" style="padding: 10px 20px;">Search</button>
                     
                     <div id="search-results" class="hidden" style="margin-top: 30px; text-align: left;">
-                        <a href="#" id="lore-link" style="color: blue; text-decoration: underline; font-size: 18px;">FILE DECRYPTED: The Truth of 1988</a>
+                        <a href="#" id="lore-link" style="color: blue; text-decoration: underline; font-size: 18px;">FILE DECRYPTED: The Truth of 1987</a>
                     </div>
                 </div>
 
                 <div id="browser-lore" class="browser-content hidden" style="background: white; color: black; padding: 30px; overflow-y: auto;">
-                    <h2>TEX Limited: A History</h2>
-                    <p>Founded in 1982, TEX Limited began with small-scale energy extraction operations. Profits were astronomical. However, ambition grew.</p>
-                    <p>By 1988, following the disappearance of CEO <span class="redacted">Dr. ███████</span>, funding evaporated amid rumors of a massive containment failure in the underground facility. All operations ceased.</p>
-                    <p>Shortly after, <strong>Technological Access Solutions (TAS)</strong>, a hospitality conglomerate, bought the bankrupt company. They seized the property, covered up the existence of the research base, and built their flagship Horizon Hotel directly on top of it. </p>
-                    <p style="color: red; font-weight: bold;">WARNING: SENSORS DETECT MOVEMENT BENEATH TAS HOTEL LOBBY.</p>
+                    <h2>TEX / Papa Bear's: A History</h2>
+                    <p>In 1980, the original <strong>Papa Bear's Pizza Place</strong> opened, funded by a shell company owned by TEX Limited. It closed due to missing children.</p>
+                    <p>In 1987, <strong>Papa Bear's Palace</strong> opened. TEX secretly tested M.I.N.S level anomalies by pumping liquid quantum energy into the animatronics. The project failed catastrophically resulting in the infamous "Bite".</p>
+                    <p>Below ground, the M.X.E.S Security System was activated, sealing the anomalies away. TAS Hospitality bought the property in 2000, building a Hotel and Multiplex on top. </p>
+                    <p style="color: red; font-weight: bold;">WARNING: IF M.X.E.S IS SHUT DOWN, THE ELEVATOR WILL FALL TO COLD HARBOR.</p>
                     <button onclick="backToSearch()" style="margin-top: 20px;">Back</button>
                 </div>
             </div>
@@ -191,7 +191,7 @@
             <div class="window-content" style="background: #ece9d8; padding: 20px;">
                 <h3>Registered to TAS Hospitality</h3>
                 <p>OS: Windows XP Professional (Modified)<br>Network: Offline Local Uplink</p>
-                <p style="color:red; font-weight:bold;">ELEVATOR SHAFT 1: OVERRIDDEN.</p>
+                <p style="color:red; font-weight:bold;">M.X.E.S STATUS: CRITICAL</p>
             </div>
         </div>
 
