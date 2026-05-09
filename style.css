@@ -1,6 +1,5 @@
 body {
     margin: 0; overflow: hidden; font-family: 'Tahoma', sans-serif;
-    /* Authentic XP Corporate Blue Desktop */
     background-color: #004e98;
     user-select: none;
 }
@@ -109,25 +108,14 @@ body {
 .terminal-bg { background: black; color: #00ff00; font-family: monospace; padding: 10px; }
 #input-line { display: flex; }
 #term-input { background: transparent; border: none; color: #00ff00; outline: none; font-family: inherit; font-size: inherit; width: 100%; }
+
 /* EMAIL APP STYLES */
-.mail-app {
-    display: flex; flex-direction: row; height: 100%; background: white;
-}
-.mail-sidebar {
-    width: 150px; background: #ece9d8; border-right: 2px inset gray; padding: 10px;
-}
-.mail-folder {
-    padding: 5px; cursor: pointer; font-size: 14px;
-}
+.mail-app { display: flex; flex-direction: row; height: 100%; background: white; }
+.mail-sidebar { width: 150px; background: #ece9d8; border-right: 2px inset gray; padding: 10px; }
+.mail-folder { padding: 5px; cursor: pointer; font-size: 14px; }
 .mail-folder.active { background: #316ac5; color: white; font-weight: bold; }
-.mail-list {
-    width: 200px; border-right: 2px inset gray; overflow-y: auto; background: white;
-}
-.mail-item {
-    padding: 10px; border-bottom: 1px solid #ccc; cursor: pointer; font-size: 12px;
-}
+.mail-list { width: 200px; border-right: 2px inset gray; overflow-y: auto; background: white; }
+.mail-item { padding: 10px; border-bottom: 1px solid #ccc; cursor: pointer; font-size: 12px; }
 .mail-item:hover { background: #e0e8f6; }
-.mail-view {
-    flex-grow: 1; padding: 20px; overflow-y: auto; background: white;
-}
+.mail-view { flex-grow: 1; padding: 20px; overflow-y: auto; background: white; }
 #mail-subject { margin-top: 0; color: #0055ea; }
